@@ -1,0 +1,33 @@
+[33mcommit 1686e8aa15750b5218f4915f1f81825e1a0ebaf3[m[33m ([m[1;36mHEAD -> [m[1;32mAnderson[m[33m, [m[1;31morigin/Anderson[m[33m)[m
+Author: Alexander Hery <86334480+DarkAsura@users.noreply.github.com>
+Date:   Sat Dec 10 12:00:00 2022 +0700
+
+    Create Controller Create Blade Create Routes
+    
+    Controller :
+    GameAccountController.php
+    TransaksiController.php
+    TransaksiHistoryController.php
+    TypeController.php
+    UserController.php
+    Blade :
+    master.blade.php
+    masterTr.blade.php
+    navBar.blade.php
+    navBarTransaction.blade.php
+    create_transaksi.blade.php
+    home.blade.php
+    transaksi_history.blade.php
+    type.blade.php
+    view_gameAccount.blade.php
+    view_transaksiHistory.blade.php
+    view_user.blade.php
+    welcome.blade.php
+    Route:
+    Web.php
+
+[33mcommit 04969a2bde8d3431d9e3cd00d93e635bda324d12[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/Venicia[m[33m, [m[1;31morigin/Patrick[m[33m, [m[1;31morigin/Alex[m[33m, [m[1;31morigin/Albert[m[33m, [m[1;32mmain[m[33m, [m[1;32mAlex[m[33m)[m
+Author: DarkAsura <ignatius.hery@binus.ac.id>
+Date:   Wed Nov 30 13:23:05 2022 +0700
+
+    first commit

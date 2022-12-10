@@ -71,11 +71,11 @@ Route::get('/transaksi/{id}', [TransaksiController::class, 'showTransaction'])
 Route::patch('/transaksi/edit/{id}', [TransaksiController::class, 'updateTransaction'])
 ->name('Edit Transaksi');
 Route::get('/transaksi/edit/{id}', [TransaksiController::class, 'editTransaction'])
-->name('Edit Transaksi Page');
+->name('Edit Transaction Page');
 
 // delete
 Route::delete('/transaksi/delete/{id}', [TransaksiController::class, 'destroyTransaction'])
-->name('Delete Transaksi');
+->name('Delete Transaction');
 
 
 

@@ -24,7 +24,7 @@
             <a class="nav-link" href="{{ route('Transaksi History Page') }}">Transaction History</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('View User Profile', [1]) }}">Account</a>
+            <a class="nav-link" href="{{ route('View User Profile', [2]) }}">Account</a>
           </li>
           </ul>
                 <form class="d-flex justify-content-end" action="{{ route('Search Game Account') }}">
