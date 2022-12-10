@@ -12,9 +12,14 @@ class GameAccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexGameAccount()
     {
-        //
+        //ambil data game account
+       
+        $gameAccounts = GameAccount::simplePaginate(12);
+
+
+        return view('home', compact('gameAccounts'));
     }
 
     /**
@@ -22,9 +27,10 @@ class GameAccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function sellGameAccount()
     {
-        //
+        $UserID = 1;
+        return view('input_gameAccount', compact('UserID'));
     }
 
     /**
@@ -33,9 +39,20 @@ class GameAccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeGameAccount(Request $request)
     {
-        //
+
+        $ga = new GameAccount();
+        $ga->GameAccountID = $request->GameAccountID;
+        $ga->UserID = $request->UserID;
+        $ga->name = $request->name;
+        $ga->image = $request->image;
+        $ga->describes = $request->describes;
+        $ga->price = $request->price;
+        $ga->save();
+
+        return redirect()->route('Home Page');
+
     }
 
     /**
@@ -44,9 +61,11 @@ class GameAccountController extends Controller
      * @param  \App\Models\GameAccount  $gameAccount
      * @return \Illuminate\Http\Response
      */
-    public function show(GameAccount $gameAccount)
+    public function showGameAccount($id)
     {
-        //
+        $ga = GameAccount::all()->find($id);
+
+        return view('view_gameAccount', compact('ga'));
     }
 
     /**
@@ -55,9 +74,11 @@ class GameAccountController extends Controller
      * @param  \App\Models\GameAccount  $gameAccount
      * @return \Illuminate\Http\Response
      */
-    public function edit(GameAccount $gameAccount)
+    public function editGameAccount($id)
     {
-        //
+        $ga = GameAccount::all()->find($id);
+
+        return view('edit_gameAccount', compact('ga'));
     }
 
     /**
@@ -67,9 +88,20 @@ class GameAccountController extends Controller
      * @param  \App\Models\GameAccount  $gameAccount
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, GameAccount $gameAccount)
+    public function updateGameAccount(Request $request, $id)
     {
-        //
+        $ga = GameAccount::all()->find($id);
+
+        $ga->GameAccountID = $request->GameAccountID;
+        $ga->UserID = $request->UserID;
+        $ga->name = $request->name;
+        $ga->image = $request->image;
+        $ga->describes = $request->describes;
+        $ga->price = $request->price;
+        $ga->save();
+
+        return redirect()->route('View Game Account', [$ga->GameAccountID]);
+
     }
 
     /**
@@ -78,8 +110,24 @@ class GameAccountController extends Controller
      * @param  \App\Models\GameAccount  $gameAccount
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GameAccount $gameAccount)
+    public function destroyGameAccount($id)
     {
-        //
+        GameAccount::destroy($id);
+        return redirect()->back();
+    }
+
+    public function searchGameAccount(Request $request)
+    {
+        $query = $request->search;
+        $search = $request->search;
+
+        $gameAccounts = GameAccount::where('name', 'like', '%'.$search.'%')
+                    ->orwhere('describes', 'like', '%'.$search.'%')
+                    ->paginate(12);
+        return view('home', compact('gameAccounts', 'query'));
+    }
+
+    public function getGameAccountDetail(GameAccount $gameAccount){
+        return view('view_gameAccount', ['gameAccount' => $gameAccount]);
     }
 }
