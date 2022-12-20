@@ -17,7 +17,7 @@ class CreateTransaksisTable extends Migration
             $table->id('TransaksiID');
             $table->foreignId('GameAccountID')->references('GameAccountID')->on('game_accounts');
             $table->string('Method');
-            $table->foreignId('UserID')->references('UserID')->on("users");
+            $table->foreignId('UserID')->references('id')->on("users");
             $table->timestamps();
         });
     }

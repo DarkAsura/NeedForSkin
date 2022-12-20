@@ -15,10 +15,11 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'Name' =>fake()->name(),
-            'Email'=>fake()->unique()->safeEmail(),
-            'Password'=>fake()->password('$minLength = 5,$maxLength = 10')
-
+            'Name' => $this->faker->name(),
+            'Email' => $this->faker->unique()->safeEmail(),
+            'email_verified_at' => now(),
+            'Password' => '',
+            'remember_token' => Str::random(10),
         ];
     }
 }

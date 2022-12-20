@@ -15,7 +15,7 @@ class CreateTransaksiHistoriesTable extends Migration
     {
         Schema::create('transaksi_histories', function (Blueprint $table) {
             $table->id('TransaksiHistoryID');
-            $table->foreignId("UserID")->references('UserID')->on('users');
+            $table->foreignId("UserID")->references('id')->on('users');
             $table->foreignId('TransaksiID')->references('TransaksiID')->on('transaksis');
             $table->timestamps();
         });

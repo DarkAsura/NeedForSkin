@@ -24,26 +24,49 @@
             <a class="nav-link" href="{{ route('Transaksi History Page') }}">Transaction History</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('View User Profile', [2]) }}">Account</a>
+            @if (Auth::check() && Auth::user()->role ==='Member')
+                <a class="nav-link" href="{{ route('View User Profile', Auth::user()->id) }}">Account</a>
+                @else
+                <a class="nav-link" href="{{ route('View User Profile', ) }}">Account</a>
+            @endif
+
+
+
+
           </li>
           </ul>
                 <form class="d-flex justify-content-end" action="{{ route('Search Game Account') }}">
                     <input name="search" class="form-control me-2" type="search" placeholder="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
-                <ul class="navbar-nav me-right mb-2 mb-lg-0 mx-2 d-none">
-                    <li class="mx-2">
-                        <form class="d-flex" role="register" method="get" action="#">
-                            <button disabled class="btn btn-outline-primary" type="submit">Register</button>
+
+            @if (!Auth::check())
+                <ul class="collapse navbar-collapse justify-content-flex-end">
+                    <li>
+                        <form class="d-flex" role="register" method="get" action="{{ Route('register') }}">
+                            <button class="btn btn-outline-primary" type="submit">Register</button>
                         </form>
                     </li>
 
                     <li>
-                        <form class="d-flex" role="login" method="get" action="#">
-                            <button disabled class="btn btn-primary" type="submit">Login</button>
+                        <form class="d-flex" role="login" method="get" action="{{ Route('login') }}">
+                            <button class="btn btn-outline-primary" type="submit">Login</button>
                         </form>
                     </li>
-        </ul>
+                </ul>
+
+            @else
+            <ul class="collapse navbar-collapse justify-content-flex-end">
+                <li>
+                    <form class="d-flex" role="logout" method="post" action="{{ Route('logout') }}">
+                        @csrf
+                        <button class="btn btn-outline-primary" type="submit">Logout</button>
+                    </form>
+                </li>
+            </ul>
+            @endif
+
+
       </div>
     </div>
   </nav>

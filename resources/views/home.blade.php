@@ -5,6 +5,9 @@
 @section('content')
 
     <div class="container">
+        @if(Auth::check() && Auth::user()->role === 'Member')
+        <h2>Welcome, {{Auth::user()->name}}</h2>
+        @endif
         @if(isset($query))
             <h1 class="text-center">Showing results of <b>"{{ $query }}"</b></h1>
         @else

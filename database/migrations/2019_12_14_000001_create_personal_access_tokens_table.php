@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGameAccountsTable extends Migration
+class CreatePersonalAccessTokensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateGameAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('game_accounts', function (Blueprint $table) {
-            $table->id('GameAccountID');
-            $table->foreignId("UserID")->references('id')->on('users');
+        Schema::create('personal_access_tokens', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->morphs('tokenable');
             $table->string('name');
-            $table->string('image');
-            $table->string('describes');
-            $table->integer('price');
+            $table->string('token', 64)->unique();
+            $table->text('abilities')->nullable();
+            $table->timestamp('last_used_at')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateGameAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('game_accounts');
+        Schema::dropIfExists('personal_access_tokens');
     }
 }

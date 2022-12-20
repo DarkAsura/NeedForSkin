@@ -5,8 +5,8 @@
 {{-- from $user --}}
 @section('content')
     <div class="container mt-5">
-        <h1 class="h1 text-center"> {{ $user->Name }} </h1>
-        <h2 class="h2 text-center"> {{ $user->Email }} </h2>
+        <h1 class="h1 text-center"> {{ $user->name }} </h1>
+        <h2 class="h2 text-center"> {{ $user->email }} </h2>
 
         <div class="row row-cols-3 justify-content-md-center">
             @foreach($gameAccounts as $ga)
