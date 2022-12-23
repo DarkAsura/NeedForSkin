@@ -33,6 +33,11 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="d-flex justify-content-center" style="margin: 2rem">
+            {{$gameAccounts->links()}}
+        </div>
+
     </div>
 @endsection
 <!-- $table->id("UserID");

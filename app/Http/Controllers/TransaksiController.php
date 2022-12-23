@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -12,10 +13,12 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexTransaction()
+    public function indexTransaction($id)
     {
         //ambil data game account
-        $transaksi = Transaksi::paginate(12);
+
+        $User = User::where('id','=',$id)->first();
+        $transaksi = Transaksi::where('UserId','=',$id)->paginate(12);
 
         return view('transaksi_history', compact('transaksi'));
     }

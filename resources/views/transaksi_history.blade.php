@@ -1,4 +1,4 @@
-@extends("template.masterTr")
+@extends("template.master")
 
 @section('title', 'Transaction History Page')
 

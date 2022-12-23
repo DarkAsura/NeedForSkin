@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box
+}
+
+.Login-Register-Logout{
+display: flex;
+flex-direction: row;
+align-content: space-between;
+width: max-content;
+}
+
+.button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: max-content;
+}

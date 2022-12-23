@@ -14,7 +14,7 @@ class UserController extends Controller
     public function viewUser($id)
     {
         $User = User::where('id','=',$id)->first();
-        $GameAccounts = GameAccount::where('UserId','=',$id)->get();
+        $GameAccounts = GameAccount::where('UserId','=',$id)->paginate(12);
 
         return view('view_user', ['user' => $User, 'gameAccounts' => $GameAccounts]);
     }

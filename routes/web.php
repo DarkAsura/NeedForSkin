@@ -62,7 +62,7 @@ Route::get('/transaksi/buat', [TransaksiController::class, 'createTransaction'])
 ->name('Buat Transaksi Page')->middleware('MemberOnly');
 
 // read
-Route::get('/transaksi_history', [TransaksiController::class, 'indexTransaction'])
+Route::get('/transaksi_history/{id?}', [TransaksiController::class, 'indexTransaction'])
 ->name('Transaksi History Page')->middleware('MemberOnly');
 Route::get('/transaksi/{id}', [TransaksiController::class, 'showTransaction'])
 ->name('View Transaksi History')->middleware('MemberOnly');
@@ -84,10 +84,10 @@ Route::get('/view_gameAccount/{gameAccount}', [\App\Http\Controllers\GameAccount
 ->name('Game Account Page');
 
 
-Route::get('/auth/login',[\App\Http\Controllers\UserController::class,'index_login'])->name('index_login')->middleware('GuestOnly');
-Route::get('/auth/register',[\App\Http\Controllers\UserController::class,'index_register'])->name('index_register')->middleware('GuestOnly');
+Route::get('/auth/login',[UserController::class,'index_login'])->name('index_login')->middleware('GuestOnly');
+Route::get('/auth/register',[UserController::class,'index_register'])->name('index_register')->middleware('GuestOnly');
 
-Route::post('/auth/login',[\App\Http\Controllers\UserController::class,'login'])->name('login');
-Route::post('/auth/register',[\App\Http\Controllers\UserController::class,'register'])->name('register');
-Route::post('/auth/logout',[\App\Http\Controllers\UserController::class,'logout'])->name('logout');
+Route::post('/auth/login',[UserController::class,'login'])->name('login');
+Route::post('/auth/register',[UserController::class,'register'])->name('register');
+Route::post('/auth/logout',[UserController::class,'logout'])->name('logout');
 
