@@ -16,8 +16,9 @@ class TypeController extends Controller
         foreach($GameType as $gameType){
             array_push($GameAccounts, GameAccount::query()->where('GameAccountID', $gameType->GameAccountID)->first());
         }
+
         return view('type', ['type' => $type, 'gameAccounts' => $GameAccounts]);
-    } 
+    }
 }
 
 

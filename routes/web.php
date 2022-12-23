@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameAccountController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -58,7 +59,7 @@ Route::get('/transaksi/search', [TransaksiController::class, 'searchTransaction'
 // create
 Route::post('/transaksi/buat', [TransaksiController::class, 'storeTransaction'])
 ->name('Buat Transaksi')->middleware('MemberOnly');
-Route::get('/transaksi/buat', [TransaksiController::class, 'createTransaction'])
+Route::get('/transaksi/buat/{gameAccount}', [TransaksiController::class, 'createTransaction'])
 ->name('Buat Transaksi Page')->middleware('MemberOnly');
 
 // read
@@ -79,8 +80,8 @@ Route::delete('/transaksi/delete/{id}', [TransaksiController::class, 'destroyTra
 
 
 
-Route::get('/type/{type}', [\App\Http\Controllers\TypeController::class, 'getType']);
-Route::get('/view_gameAccount/{gameAccount}', [\App\Http\Controllers\GameAccountController::class, 'getGameAccountDetail'])
+Route::get('/type/{type}', [TypeController::class, 'getType']);
+Route::get('/view_gameAccount/{gameAccount}', [GameAccountController::class, 'getGameAccountDetail'])
 ->name('Game Account Page');
 
 

@@ -24,7 +24,7 @@
                     <form action="{{ route('Game Account Page', [$a->GameAccountID]) }}">
                         <button class="btn btn-outline-primary" type="submit">View</button>
                     </form>
-                    <form action="{{ route('Buat Transaksi Page') }}">
+                    <form action="{{ route('Buat Transaksi Page',[$a->GameAccountID]) }}">
                         <button class="btn btn-outline-primary" type="submit">Buy</button>
                     </form>
                 </div>

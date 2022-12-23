@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GameAccount;
 use App\Models\Transaksi;
+use App\Models\TransaksiHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransaksiController extends Controller
 {
@@ -16,9 +19,20 @@ class TransaksiController extends Controller
     public function indexTransaction($id)
     {
         //ambil data game account
+        // $transaksi = TransaksiHistory::where('UserId','=',$id)->paginate(12);
 
-        $User = User::where('id','=',$id)->first();
-        $transaksi = Transaksi::where('UserId','=',$id)->paginate(12);
+        // $TransaksiHistory = TransaksiHistory::query()->where('UserId', $id)->get();
+
+        $transaksi = DB::table('transaksi_histories')
+        ->select('*','types.name as GameName','game_accounts.name as name')
+        ->join('transaksis','transaksi_histories.TransaksiID','=','transaksis.TransaksiID')
+        ->join('game_accounts','transaksis.GameAccountID','=','game_accounts.GameAccountID')
+        ->join('game_types','game_accounts.GameAccountID','=','game_types.GameAccountID')
+        ->join('types','game_types.GameType','=','types.TypeID')
+        ->where(['transaksi_histories.UserID' => $id])
+        ->get();
+
+        // dd($transaksi);
 
         return view('transaksi_history', compact('transaksi'));
     }
@@ -28,10 +42,9 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createTransaction()
+    public function createTransaction(GameAccount $gameAccount)
     {
-        $UserID = 1;
-        return view('create_transaksi', compact('UserID'));
+        return view('create_transaksi', ['gameAccount' => $gameAccount]);
     }
 
     /**
@@ -42,15 +55,24 @@ class TransaksiController extends Controller
      */
     public function storeTransaction(Request $request)
     {
-
+        // dd($request);
         $tr = new Transaksi();
-        $tr->TransaksiID = $request->TransaksiID;
         $tr->GameAccountID = $request->GameAccountID;
         $tr->Method = $request->Method;
         $tr->UserID = $request->UserID;
         $tr->save();
 
-        return redirect()->route('Transaksi History Page');
+
+        $trh = new TransaksiHistory();
+        $trh->UserID = $request->user_id;
+        $trh->TransaksiID = $tr->TransaksiID;
+        $trh->save();
+
+        $gameAccount = GameAccount::all()->find($tr->GameAccountID);
+        $gameAccount->UserID = $trh->UserID;
+        $gameAccount->save();
+
+        return redirect()->route('Transaksi History Page',['id' => $trh->UserID]);
 
     }
 

@@ -11,6 +11,7 @@
                 <p class="card-text">Game Account ID: {{$tr->GameAccountID}}</p>
                 <p class="card-text">Payment Method: {{$tr->Method}}</p>
                 <p class="card-text">User ID: {{$tr->UserID}}</p>
+                <p class="card-text">User ID: {{$tr->UserID}}</p>
             </div>
         </div>
     </div>

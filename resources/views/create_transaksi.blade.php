@@ -8,33 +8,47 @@
         <form style="width: 60vw" method="post" action="{{ route('Buat Transaksi') }}">
             @csrf
             <h1 class="text-center h1">Transaction Page</h1>
-            <input type="hidden" name="user_id" value="{{ $UserID }}">
+            <input type="hidden" name="user_id" value="{{Auth::user()->id }}">
 
-            <div class="form-group d-none">
+            <div class="form-group">
                 <label for="name" class="form-label">Your name</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter Your name"
-                       name="asked_by" value="{{-- Asker Name --}}">
+                <input type="text" class="form-control" id="name" placeholder="Your Name"
+                       name="asked_by" value="{{Auth::user()->name }}"  readonly="readonly">
                 {{-- Input text, name = "name" --}}
             </div>
 
             <div class="form-group">
                 <label for="title" class="form-label">Game Account ID</label>
                 <input type="text" class="form-control" id="title" placeholder="Enter Game Account ID"
-                       name="GameAccountID">
+                       name="GameAccountID" value="{{$gameAccount->GameAccountID}}"  readonly="readonly">
+                {{-- Input text, name = "GameAccountID" --}}
+            </div>
+
+            <div class="form-group">
+                <label for="title" class="form-label">Price</label>
+                <input type="text" class="form-control" id="title" placeholder="Enter Game Account ID"
+                       name="Price" value="{{$gameAccount->price}}"  readonly="readonly">
                 {{-- Input text, name = "GameAccountID" --}}
             </div>
 
             <div class="form-group">
                 <label for="subject" class="form-label">Method</label>
-                <input type="text" class="form-control" id="Method" placeholder="Enter Method (like Cash, Credit Card, Gopay, OVO etc.)"
-                       name="Method">
-                {{-- Input text, name = "Method" --}}
+                <select class="form-select" id="Method" required name="Method">
+                  <option selected disabled value="">Choose...</option>
+                  <option value="Cash">Cash</option>
+                  <option value="Gopay">Gopay</option>
+                  <option value="Ovo">Ovo</option>
+                  <option value="Dana">Dana</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid Method.
+                  </div>
             </div>
 
             <div class="form-group">
                 <label for="subject" class="form-label">User ID</label>
                 <input type="text" class="form-control" id="subject" placeholder="Enter User ID"
-                       name="UserID">
+                       name="UserID" value="{{ $gameAccount->UserID }}"  readonly="readonly">
                 {{-- Input text, name = "UserID" --}}
             </div>
 

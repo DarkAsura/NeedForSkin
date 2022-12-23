@@ -15,12 +15,6 @@ class TransaksiSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create("ID_id");
-        Transaksi::create([
-            'GameAccountID'=>$faker->numberBetween(1,10),
-            'Method'=>$faker->randomElement(['Gopay','Dana','Ovo']),
-            'UserID'=>$faker->numberBetween(1,20)
 
-        ]);
     }
 }

@@ -27,9 +27,9 @@
             @endforeach
         </div>
 
-        <div class="d-flex justify-content-center" style="margin: 2rem">
+        {{-- <div class="d-flex justify-content-center" style="margin: 2rem">
             {{$transaksi->links()}}
-        </div>
+        </div> --}}
     </div>
 
 @endsection

@@ -11,6 +11,7 @@
                 <p class="card-text">Account Name: {{$gameAccount->name}}</p>
                 <p class="card-text">{{$gameAccount->describes}}</p>
                 <p class="card-text">Total Payment: {{$gameAccount->price}}</p>
+                <p class="card-text">User Owner: {{$gameAccount->UserID}}</p>
             </div>
         </div>
     </div>
