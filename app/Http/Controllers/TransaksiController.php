@@ -32,8 +32,6 @@ class TransaksiController extends Controller
         ->where(['transaksi_histories.UserID' => $id])
         ->get();
 
-        // dd($transaksi);
-
         return view('transaksi_history', compact('transaksi'));
     }
 
@@ -55,7 +53,6 @@ class TransaksiController extends Controller
      */
     public function storeTransaction(Request $request)
     {
-        // dd($request);
         $tr = new Transaksi();
         $tr->GameAccountID = $request->GameAccountID;
         $tr->Method = $request->Method;
@@ -84,8 +81,15 @@ class TransaksiController extends Controller
      */
     public function showTransaction($id)
     {
-        $tr = Transaksi::all()->find($id);
-
+        $tr = DB::table('transaksis')
+        ->select('*','types.name as GameName','game_accounts.name as name')
+        ->join('transaksi_histories','transaksis.TransaksiID','=','transaksi_histories.TransaksiID')
+        ->join('game_accounts','transaksis.GameAccountID','=','game_accounts.GameAccountID')
+        ->join('game_types','game_accounts.GameAccountID','=','game_types.GameAccountID')
+        ->join('types','game_types.GameType','=','types.TypeID')
+        ->where(['transaksis.TransaksiID' => $id])
+        ->get();
+        // dd($tr);
         return view('view_transaksiHistory', compact('tr'));
     }
 

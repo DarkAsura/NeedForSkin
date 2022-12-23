@@ -12,14 +12,15 @@
             @foreach($gameAccounts as $ga)
                 <div class="card col m-1" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title"> {{ $ga->name }} </h5>
-                        <h6 class="card-subtitle mb-2 text-muted"> {{ $ga->GameAccountID }}</h6>
+                        <h5 class="card-title">Game Account Name: {{ $ga->name }} </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Game Account Id: {{ $ga->GameAccountID }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Game Name: {{ $ga->GameName }}</h6>
                         <p class="card-text text-truncate"> {{ $ga->describes }} </p>
                         <div class="d-flex justify-content-between">
                             <form action="{{ route('Game Account Page', [$ga->GameAccountID]) }}">
                                 <button class="btn btn-outline-primary" type="submit">View</button>
                             </form>
-                        </div>
+
                         <form action="{{ route('Edit Transaction Page', [$ga->GameAccountID]) }}">
                             <button class="btn btn-outline-primary" type="submit">Edit</button>
                         </form>
@@ -29,6 +30,7 @@
                             @method('deleteTransaction')
                             <button class="btn btn-outline-danger" type="submit">Delete</button>
                         </form>
+                        </div>
                     </div>
                 </div>
             @endforeach

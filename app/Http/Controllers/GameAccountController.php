@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GameAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GameAccountController extends Controller
 {
@@ -15,7 +16,7 @@ class GameAccountController extends Controller
     public function indexGameAccount()
     {
         //ambil data game account
-       
+
         $gameAccounts = GameAccount::simplePaginate(12);
 
 
@@ -128,6 +129,14 @@ class GameAccountController extends Controller
     }
 
     public function getGameAccountDetail(GameAccount $gameAccount){
-        return view('view_gameAccount', ['gameAccount' => $gameAccount]);
+
+        $ga = DB::table('game_accounts')
+        ->select('*','types.name as GameName','game_accounts.name as name')
+        ->join('game_types','game_accounts.GameAccountID','=','game_types.GameAccountID')
+        ->join('types','game_types.GameType','=','types.TypeID')
+        ->where(['game_accounts.GameAccountID' => $gameAccount->GameAccountID])
+        ->get();
+
+        return view('view_gameAccount', ['ga' => $ga]);
     }
 }

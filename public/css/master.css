@@ -1,5 +1,9 @@
+h1 { color: #333333; font-family: 'Bitter', serif; font-weight: normal; line-height: 54px; margin: 0 0 54px; }
+
+p { color: #333333; font-family: Georgia, serif; line-height: 28px; margin: 0 0 28px; }
+
 * {
-    box-sizing: border-box
+
 }
 
 .Login-Register-Logout{
@@ -14,4 +18,8 @@ width: max-content;
     margin: 10px 0;
     padding: 10px;
     width: max-content;
+}
+
+.Welcome{
+    padding-left: 7%;
 }

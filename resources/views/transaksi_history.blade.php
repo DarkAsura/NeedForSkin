@@ -15,7 +15,9 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                   <h5 class="card-title"> Transaction ID: {{$tr->TransaksiID}} </h5>
-                  <p class="card-text"> Game Account ID {{$tr->GameAccountID}} </p>
+                  <p class="card-text"> Game Name: {{ $tr->GameName }} </p>
+                  <p class="card-text"> Game Account ID: {{$tr->GameAccountID}} </p>
+                  <p class="card-text"> Game Account Name: {{$tr->name}} </p>
                   <p class="card-text"> Method: {{$tr->Method}} </p>
                   <div class="d-flex justify-content-between">
                     <form action="{{ route('View Transaksi History', [$tr->TransaksiID]) }}">
