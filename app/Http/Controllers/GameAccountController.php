@@ -17,7 +17,11 @@ class GameAccountController extends Controller
     {
         //ambil data game account
 
-        $gameAccounts = GameAccount::simplePaginate(12);
+        $gameAccounts = DB::table('game_accounts')
+        ->select('*','types.name as GameName','game_accounts.name as name')
+        ->join('game_types','game_accounts.GameAccountID','=','game_types.GameAccountID')
+        ->join('types','game_types.GameType','=','types.TypeID')
+        ->simplePaginate(12);
 
 
         return view('home', compact('gameAccounts'));

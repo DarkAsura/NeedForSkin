@@ -41,6 +41,6 @@
     </div>
   </form>
   <hr>
-  <p class="text-light">Already have an account ? Click <a class="link-light" href="{{route('login')}}">Here</a> to Login.</p>
+  <p class="text">Already have an account ? Click <a class="link-dark" href="{{route('login')}}">Here</a> to Login.</p>
 </div>
 @endsection

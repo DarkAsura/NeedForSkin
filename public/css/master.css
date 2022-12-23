@@ -2,10 +2,6 @@ h1 { color: #333333; font-family: 'Bitter', serif; font-weight: normal; line-hei
 
 p { color: #333333; font-family: Georgia, serif; line-height: 28px; margin: 0 0 28px; }
 
-* {
-
-}
-
 .Login-Register-Logout{
 display: flex;
 flex-direction: row;
@@ -23,3 +19,32 @@ width: max-content;
 .Welcome{
     padding-left: 7%;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Mukta');
+body{
+  font-family: 'Mukta', sans-serif;
+  height:100vh;
+  min-height:550px;
+  background-color: white !important;
+}
+
+.card{
+    background-color: transparent;
+    min-height: 50vh;
+    max-width: 280cm;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.Own-Account{
+    text-justify: center ;
+    text-align: center;
+    margin: 0%;
+    font-size: 85%;
+}
+
+

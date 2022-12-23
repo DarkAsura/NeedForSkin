@@ -3,6 +3,9 @@
 @section('title', 'Login Page')
 
 @section('content')
+
+<div class="login-reg-panel">
+
   <div class="container" style="width:400px">
     <form action="{{route('login')}}" method="post">
         @csrf
@@ -36,4 +39,5 @@
     <p class="text-light">Don't Have an Account Yet ? Click <a class="link-light" href="{{route('register')}}">Here</a> to Register.</p>
   </div>
 
+</div>
 @endsection

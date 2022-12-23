@@ -18,7 +18,8 @@
                 <form action="{{ route('Game Account Page', [$a->GameAccountID]) }}">
                     <button class="btn btn-outline-primary" type="submit">View</button>
                 </form>
-                <p>You Own this Account</p>
+                <pre class="Own-Account">You Own
+this Account</pre>
                 </div>
             </div>
           </div>
