@@ -5,6 +5,7 @@
 {{-- from $user --}}
 @section('content')
     <div class="container mt-5">
+        <a href="{{ Route('Buat Game Account') }}">Create Account</a>
         <h1 class="h1 text-center"> {{ $user->name }} </h1>
         <h2 class="h2 text-center"> {{ $user->email }} </h2>
 

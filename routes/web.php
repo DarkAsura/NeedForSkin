@@ -23,10 +23,11 @@ Route::get('/gameAccount/search', [GameAccountController::class, 'searchGameAcco
     ->name('Search Game Account');
 
 // create
-Route::post('/gameAccount/input', [GameAccountController::class, 'storeGameAccount'])
-    ->name('Input Game Account')->middleware('MemberOnly');
-Route::get('/gameAccount/input', [GameAccountController::class, 'sellGameAccount'])
-    ->name('Sell Game Account Page')->middleware('MemberOnly');
+Route::post('/gameAccount/create', [GameAccountController::class, 'storeGameAccount'])
+    ->name('Buat Game Account')->middleware('MemberOnly');
+Route::get('/gameAccount/create',function(){
+    return view('create_gameAccount');
+    })->name('Buat Game Account')->middleware('MemberOnly');
 
 // read
 Route::get('/', [GameAccountController::class, 'indexGameAccount'])
@@ -47,10 +48,6 @@ Route::delete('/gameAccount/delete/{id}', [GameAccountController::class, 'destro
 // view profile
 Route::get('/user/{id?}', [UserController::class, 'viewUser'])
     ->name('View User Profile')->middleware('MemberOnly');
-
-
-
-
 
 //search transaksi
 Route::get('/transaksi/search', [TransaksiController::class, 'searchTransaction'])
@@ -84,10 +81,11 @@ Route::get('/type/{type}', [TypeController::class, 'getType']);
 Route::get('/view_gameAccount/{gameAccount}', [GameAccountController::class, 'getGameAccountDetail'])
 ->name('Game Account Page');
 
-
+// login regis
 Route::get('/auth/login',[UserController::class,'index_login'])->name('index_login')->middleware('GuestOnly');
 Route::get('/auth/register',[UserController::class,'index_register'])->name('index_register')->middleware('GuestOnly');
 
+// login regis logout
 Route::post('/auth/login',[UserController::class,'login'])->name('login');
 Route::post('/auth/register',[UserController::class,'register'])->name('register');
 Route::post('/auth/logout',[UserController::class,'logout'])->name('logout');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GameAccount;
+use App\Models\GameType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -46,18 +47,42 @@ class GameAccountController extends Controller
      */
     public function storeGameAccount(Request $request)
     {
+        $validate = $request->validate([
+            'name' => 'required',
+            'GameType' => 'required',
+            'describes' => 'bail|required|min:10|max:100',
+             'price' => 'bail|required|numeric|gt:1000',
+         ]);
 
-        $ga = new GameAccount();
-        $ga->GameAccountID = $request->GameAccountID;
-        $ga->UserID = $request->UserID;
-        $ga->name = $request->name;
-        $ga->image = $request->image;
-        $ga->describes = $request->describes;
-        $ga->price = $request->price;
-        $ga->save();
+        if ($validate) {
 
-        return redirect()->route('Home Page');
+            if($request->GameType == 1){
+                $fileName = 'https://drive.google.com/thumbnail?id=1lLAsBFzOGSTNtnjcuoLWVvpOv59kpluY';
+            }else if($request->GameType == 2){
+                $fileName = 'https://drive.google.com/thumbnail?id=13iynboeEGsz3H5SjYTkrmRhIo6P146zB';
+            }else if($request->GameType == 3){
+                $fileName = 'https://drive.google.com/thumbnail?id=1IbgX7_8dPuDisxjfk5EEqPV6dncAI-s3';
+            }else if ($request->GameType == 4){
+                $fileName = 'https://drive.google.com/thumbnail?id=1S9vWjzfP6L-zXa3gyAPIM3DIC-jtzt3k';
+            }else{
+                $fileName = 'https://drive.google.com/thumbnail?id=1UIDGVYdMqdFj-BOlS9vRZPBUPzNuKqxF';
+            }
 
+            $ga = new GameAccount();
+            $ga->UserID = $request->user_id;
+            $ga->name = $request->name;
+            $ga->image = $fileName;
+            $ga->describes = $request->describes;
+            $ga->price = $request->price;
+            $ga->save();
+
+            $gt = new GameType();
+            $gt->GameType = $request->GameType;
+            $gt->GameAccountID = $ga->GameAccountID;
+            $gt->save();
+            return redirect()->route('Home Page');
+        }
+        return redirect()->route('Buat Game Account')->withErrors($validate, 'Error');
     }
 
     /**
