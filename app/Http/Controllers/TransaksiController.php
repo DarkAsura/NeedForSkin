@@ -53,14 +53,11 @@ class TransaksiController extends Controller
      */
     public function storeTransaction(Request $request)
     {
-
-        dd($request);
         $tr = new Transaksi();
         $tr->GameAccountID = $request->GameAccountID;
         $tr->Method = $request->Method;
         $tr->UserID = $request->UserID;
         $tr->save();
-
 
         $trh = new TransaksiHistory();
         $trh->UserID = $request->user_id;
