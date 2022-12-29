@@ -24,7 +24,7 @@
                 </ul>
                 </li>
                     <li class="nav-item">
-                        @if (Auth::check() && Auth::user()->role ==='Member')
+                        @if (Auth::check() && (Auth::user()->role ==='Member' || Auth::user()->role === 'Admin'))
                             <a class="nav-link" href="{{ route('Transaksi History Page', Auth::user()->id) }}">Transaction History</a>
                             @else
                             <a class="nav-link" href="{{ route('Transaksi History Page', ) }}">Transaction History</a>
@@ -33,7 +33,7 @@
 
                 </li>
                 <li class="nav-item">
-                    @if (Auth::check() && Auth::user()->role ==='Member')
+                    @if (Auth::check() && (Auth::user()->role ==='Member' || Auth::user()->role ==='Admin'))
                         <a class="nav-link" href="{{ route('View User Profile', Auth::user()->id) }}">Account</a>
                         @else
                         <a class="nav-link" href="{{ route('View User Profile', ) }}">Account</a>

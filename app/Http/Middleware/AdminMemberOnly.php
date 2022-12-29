@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class MemberOnly
+class AdminMemberOnly
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,8 @@ class MemberOnly
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role !== 'Member'){
-            return redirect();
+        if (!Auth::check()){
+            return redirect()->route('login');
         }
         return $next($request);
     }

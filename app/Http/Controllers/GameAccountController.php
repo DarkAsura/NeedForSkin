@@ -120,18 +120,40 @@ class GameAccountController extends Controller
      */
     public function updateGameAccount(Request $request, $id)
     {
-        $ga = GameAccount::all()->find($id);
+        $validate = $request->validate([
+            'name' => 'required',
+            'GameType' => 'required',
+            'describes' => 'bail|required|min:10|max:100',
+             'price' => 'bail|required|numeric|gt:1000',
+         ]);
+        if ($validate) {
+            if($request->GameType == 1){
+                $fileName = 'https://drive.google.com/thumbnail?id=1lLAsBFzOGSTNtnjcuoLWVvpOv59kpluY';
+            }else if($request->GameType == 2){
+                $fileName = 'https://drive.google.com/thumbnail?id=13iynboeEGsz3H5SjYTkrmRhIo6P146zB';
+            }else if($request->GameType == 3){
+                $fileName = 'https://drive.google.com/thumbnail?id=1IbgX7_8dPuDisxjfk5EEqPV6dncAI-s3';
+            }else if ($request->GameType == 4){
+                $fileName = 'https://drive.google.com/thumbnail?id=1S9vWjzfP6L-zXa3gyAPIM3DIC-jtzt3k';
+            }else{
+                $fileName = 'https://drive.google.com/thumbnail?id=1UIDGVYdMqdFj-BOlS9vRZPBUPzNuKqxF';
+            }
+            $ga = GameAccount::all()->find($id);
+            $ga->UserID = $request->user_id;
+            $ga->name = $request->name;
+            $ga->image = $fileName;
+            $ga->describes = $request->describes;
+            $ga->price = $request->price;
+            $ga->save();
 
-        $ga->GameAccountID = $request->GameAccountID;
-        $ga->UserID = $request->UserID;
-        $ga->name = $request->name;
-        $ga->image = $request->image;
-        $ga->describes = $request->describes;
-        $ga->price = $request->price;
-        $ga->save();
-
-        return redirect()->route('View Game Account', [$ga->GameAccountID]);
-
+            DB::table('game_types')
+            ->where('game_types.GameAccountID', '=', $id)
+            ->update([
+                'GameType' => $request->GameType
+            ]);
+            return redirect()->route('View Game Account', [$ga->GameAccountID]);
+        }
+        return redirect()->route('Edit Game Account Page')->withErrors($validate, 'Error');
     }
 
     /**
@@ -142,7 +164,12 @@ class GameAccountController extends Controller
      */
     public function destroyGameAccount($id)
     {
+        DB::table('game_types')
+            ->where('game_types.GameAccountID', '=', $id)
+            ->delete();
         GameAccount::destroy($id);
+
+
         return redirect()->back();
     }
 

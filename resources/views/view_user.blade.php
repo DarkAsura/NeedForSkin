@@ -22,13 +22,13 @@
                                 <button class="btn btn-outline-primary" type="submit">View</button>
                             </form>
 
-                        <form action="{{ route('Edit Transaction Page', [$ga->GameAccountID]) }}">
+                        <form action="{{ route('Edit Game Account Page', [$ga->GameAccountID]) }}">
                             <button class="btn btn-outline-primary" type="submit">Edit</button>
                         </form>
 
-                        <form method="post" action="{{route('Delete Transaction', [$ga->GameAccountID])}}">
+                        <form method="post" action="{{route('Delete Game Account', [$ga->GameAccountID])}}">
                             @csrf
-                            @method('deleteTransaction')
+                            @method('DELETE')
                             <button class="btn btn-outline-danger" type="submit">Delete</button>
                         </form>
                         </div>

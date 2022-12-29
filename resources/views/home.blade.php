@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="container">
-        @if(Auth::check() && Auth::user()->role === 'Member')
+        @if(Auth::check() &&( Auth::user()->role === 'Member' || Auth::user()->role === 'Admin' ))
         <h2 class="Welcome">Welcome, {{Auth::user()->name}}</h2>
         @endif
         @if(isset($query))
@@ -15,7 +15,7 @@
         @endif
         <div class="row row-cols-3 justify-content-md-center transparant">
             @foreach($gameAccounts as $a)
-            @if (Auth::check() && Auth::user()->role === 'Member' && Auth::user()->id === $a->UserID)
+            @if (Auth::check() && ( Auth::user()->role === 'Member' || Auth::user()->role === 'Admin' ) && Auth::user()->id === $a->UserID)
             <div class="card" style="width: 18rem;">
                 <img src=" {{$a->image}} " class="card-img-top" alt="...">
                 <div class="card-body">
@@ -26,8 +26,9 @@
                     <form action="{{ route('Game Account Page', [$a->GameAccountID]) }}">
                         <button class="btn btn-outline-primary" type="submit">View</button>
                     </form>
-                    <pre class="Own-Account">You Own
-this Account</pre>
+                    <div class="Own-Account">
+                        <p>You Own<br>this Account</p>
+                    </div>
                     </div>
                 </div>
               </div>

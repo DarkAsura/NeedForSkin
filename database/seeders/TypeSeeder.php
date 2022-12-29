@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Type;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,20 +15,17 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('types')->insert([
+        Type::create([
             'name'=>'Valorant'
         ]);
-        DB::table('types')->insert([
+        Type::create([
             'name'=>'Genshin Impact'
         ]);
-        DB::table('types')->insert([
+        Type::create([
             'name'=>'DOTA 2'
         ]);
-        DB::table('types')->insert([
+        Type::create([
             'name'=>'CSGO'
         ]);
-
-
-
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Seeders;
+
+use App\Models\GameType;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,12 +16,10 @@ class GameTypeSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create('ID_id');
-
-        for($i = 1;$i <= 20;$i++){
-            DB::table('game_types')->insert([
-               'GameType'=>$faker->numberBetween(1,4),
-                'GameAccountID'=> $i
+        for($i = 0;$i < 20;$i++){
+            GameType::create([
+                'GameType'=>$i%4+1,
+                'GameAccountID'=> $i+1
             ]);
         }
     }

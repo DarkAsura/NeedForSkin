@@ -24,10 +24,10 @@ Route::get('/gameAccount/search', [GameAccountController::class, 'searchGameAcco
 
 // create
 Route::post('/gameAccount/create', [GameAccountController::class, 'storeGameAccount'])
-    ->name('Buat Game Account')->middleware('MemberOnly');
+    ->name('Buat Game Account')->middleware('AdminMemberOnly');
 Route::get('/gameAccount/create',function(){
     return view('create_gameAccount');
-    })->name('Buat Game Account')->middleware('MemberOnly');
+    })->name('Buat Game Account')->middleware('AdminMemberOnly');
 
 // read
 Route::get('/', [GameAccountController::class, 'indexGameAccount'])
@@ -37,17 +37,17 @@ Route::get('/gameAccount/{id}', [GameAccountController::class, 'showGameAccount'
 
 // update
 Route::patch('/gameAccount/edit/{id}', [GameAccountController::class, 'updateGameAccount'])
-    ->name('Edit Game Account')->middleware('MemberOnly');
+    ->name('Edit Game Account')->middleware('AdminMemberOnly');
 Route::get('/gameAccount/edit/{id}', [GameAccountController::class, 'editGameAccount'])
-    ->name('Edit Game Account Page')->middleware('MemberOnly');
+    ->name('Edit Game Account Page')->middleware('AdminMemberOnly');
 
 // delete
 Route::delete('/gameAccount/delete/{id}', [GameAccountController::class, 'destroyGameAccount'])
-    ->name('Delete Game Account')->middleware('MemberOnly');
+    ->name('Delete Game Account')->middleware('AdminMemberOnly');
 
 // view profile
 Route::get('/user/{id?}', [UserController::class, 'viewUser'])
-    ->name('View User Profile')->middleware('MemberOnly');
+    ->name('View User Profile')->middleware('AdminMemberOnly');
 
 //search transaksi
 Route::get('/transaksi/search', [TransaksiController::class, 'searchTransaction'])
@@ -55,21 +55,21 @@ Route::get('/transaksi/search', [TransaksiController::class, 'searchTransaction'
 
 // create
 Route::post('/transaksi/buat', [TransaksiController::class, 'storeTransaction'])
-->name('Buat Transaksi')->middleware('MemberOnly');
+->name('Buat Transaksi')->middleware('AdminMemberOnly');
 Route::get('/transaksi/buat/{gameAccount}', [TransaksiController::class, 'createTransaction'])
-->name('Buat Transaksi Page')->middleware('MemberOnly');
+->name('Buat Transaksi Page')->middleware('AdminMemberOnly');
 
 // read
 Route::get('/transaksi_history/{id?}', [TransaksiController::class, 'indexTransaction'])
-->name('Transaksi History Page')->middleware('MemberOnly');
+->name('Transaksi History Page')->middleware('AdminMemberOnly');
 Route::get('/transaksi/{id}', [TransaksiController::class, 'showTransaction'])
-->name('View Transaksi History')->middleware('MemberOnly');
+->name('View Transaksi History')->middleware('AdminMemberOnly');
 
 // update
 Route::patch('/transaksi/edit/{id}', [TransaksiController::class, 'updateTransaction'])
-->name('Edit Transaksi')->middleware('MemberOnly');
+->name('Edit Transaksi')->middleware('AdminMemberOnly');
 Route::get('/transaksi/edit/{id}', [TransaksiController::class, 'editTransaction'])
-->name('Edit Transaction Page')->middleware('MemberOnly');
+->name('Edit Transaction Page')->middleware('AdminMemberOnly');
 
 // delete
 Route::delete('/transaksi/delete/{id}', [TransaksiController::class, 'destroyTransaction'])
