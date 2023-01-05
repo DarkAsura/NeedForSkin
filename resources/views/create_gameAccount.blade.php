@@ -6,7 +6,7 @@
 
 <div class="d-flex justify-content-md-center my-5 h-100">
     {{-- TODO: Insert method and action here, and don't forget about enctype and csrf --}}
-    <form style="width: 60vw" method="post" action="{{ route('Buat Game Account') }}">
+    <form style="width: 60vw" method="post" action="{{ route('Buat Game Account Logic') }}">
         @csrf
         <h1 class="text-center h1">Create Account</h1>
         <input type="hidden" name="user_id" value="{{Auth::user()->id }}">

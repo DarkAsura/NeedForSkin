@@ -24,7 +24,7 @@ Route::get('/gameAccount/search', [GameAccountController::class, 'searchGameAcco
 
 // create
 Route::post('/gameAccount/create', [GameAccountController::class, 'storeGameAccount'])
-    ->name('Buat Game Account')->middleware('AdminMemberOnly');
+    ->name('Buat Game Account Logic')->middleware('AdminMemberOnly');
 Route::get('/gameAccount/create',function(){
     return view('create_gameAccount');
     })->name('Buat Game Account')->middleware('AdminMemberOnly');
@@ -36,7 +36,7 @@ Route::get('/gameAccount/{id}', [GameAccountController::class, 'showGameAccount'
     ->name('View Game Account');
 
 // update
-Route::patch('/gameAccount/edit/{id}', [GameAccountController::class, 'updateGameAccount'])
+Route::put('/gameAccount/edit/{id}', [GameAccountController::class, 'updateGameAccount'])
     ->name('Edit Game Account')->middleware('AdminMemberOnly');
 Route::get('/gameAccount/edit/{id}', [GameAccountController::class, 'editGameAccount'])
     ->name('Edit Game Account Page')->middleware('AdminMemberOnly');

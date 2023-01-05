@@ -138,7 +138,7 @@ class GameAccountController extends Controller
             }else{
                 $fileName = 'https://drive.google.com/thumbnail?id=1UIDGVYdMqdFj-BOlS9vRZPBUPzNuKqxF';
             }
-            $ga = GameAccount::all()->find($id);
+            $ga = GameAccount::find($id);
             $ga->UserID = $request->user_id;
             $ga->name = $request->name;
             $ga->image = $fileName;
@@ -151,7 +151,7 @@ class GameAccountController extends Controller
             ->update([
                 'GameType' => $request->GameType
             ]);
-            return redirect()->route('View Game Account', [$ga->GameAccountID]);
+            return redirect()->route('Home Page');
         }
         return redirect()->route('Edit Game Account Page')->withErrors($validate, 'Error');
     }
@@ -167,10 +167,8 @@ class GameAccountController extends Controller
         DB::table('game_types')
             ->where('game_types.GameAccountID', '=', $id)
             ->delete();
-        GameAccount::destroy($id);
 
-
-        return redirect()->back();
+        return redirect()->route('Home Page');
     }
 
     public function searchGameAccount(Request $request)
@@ -178,9 +176,14 @@ class GameAccountController extends Controller
         $query = $request->search;
         $search = $request->search;
 
-        $gameAccounts = GameAccount::where('name', 'like', '%'.$search.'%')
-                    ->orwhere('describes', 'like', '%'.$search.'%')
-                    ->paginate(12);
+        $gameAccounts = DB::table('game_accounts')
+        ->select('*','types.name as GameName','game_accounts.name as name')
+        ->join('game_types','game_accounts.GameAccountID','=','game_types.GameAccountID')
+        ->join('types','game_types.GameType','=','types.TypeID')
+        ->where('game_accounts.name', 'like', '%'.$search.'%')
+        ->orwhere('describes', 'like', '%'.$search.'%')
+        ->simplePaginate(12);
+
         return view('home', compact('gameAccounts', 'query'));
     }
 

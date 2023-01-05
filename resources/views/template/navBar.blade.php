@@ -11,18 +11,18 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Game Category
-                    </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    @foreach (\App\Models\Type::all() as $type)
-                        <li><a class="dropdown-item" href={{ "/type/{$type->TypeID}" }}>{{ $type->name }}</a></li>
-                    @endforeach
-                </ul>
-                </li>
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Game Category
+                        </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        @foreach (\App\Models\Type::all() as $type)
+                            <li><a class="dropdown-item" href={{ "/type/{$type->TypeID}" }}>{{ $type->name }}</a></li>
+                        @endforeach
+                    </ul>
+                    </li>
                     <li class="nav-item">
                         @if (Auth::check() && (Auth::user()->role ==='Member' || Auth::user()->role === 'Admin'))
                             <a class="nav-link" href="{{ route('Transaksi History Page', Auth::user()->id) }}">Transaction History</a>
@@ -30,23 +30,23 @@
                             <a class="nav-link" href="{{ route('Transaksi History Page', ) }}">Transaction History</a>
                         @endif
                     </li>
-
-                </li>
-                <li class="nav-item">
-                    @if (Auth::check() && (Auth::user()->role ==='Member' || Auth::user()->role ==='Admin'))
-                        <a class="nav-link" href="{{ route('View User Profile', Auth::user()->id) }}">Account</a>
-                        @else
-                        <a class="nav-link" href="{{ route('View User Profile', ) }}">Account</a>
-                    @endif
-                </li>
-                <li class="nav-item">
-                        <form class="d-flex" action="{{ route('Search Game Account') }}">
-                            <input name="search" class="form-control me-2" type="search" placeholder="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                </li>
+                    <li class="nav-item">
+                        @if (Auth::check() && (Auth::user()->role ==='Member' || Auth::user()->role ==='Admin'))
+                            <a class="nav-link" href="{{ route('View User Profile', Auth::user()->id) }}">Account</a>
+                            @else
+                            <a class="nav-link" href="{{ route('View User Profile', ) }}">Account</a>
+                        @endif
+                    </li>
+                </ul>
+                    <li class="nav-item" style="padding-bottom: 2%;">
+                            <form class="d-flex" action="{{ route('Search Game Account') }}">
+                                <input name="search" class="form-control me-2" type="search" placeholder="Search">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                    </li>
             </div>
         </div>
+
         <div class="Login-Register-Logout">
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
                 @if (!Auth::check())

@@ -8,6 +8,7 @@ use App\Models\TransaksiHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
@@ -23,15 +24,21 @@ class TransaksiController extends Controller
 
         // $TransaksiHistory = TransaksiHistory::query()->where('UserId', $id)->get();
 
-        $transaksi = DB::table('transaksi_histories')
-        ->select('*','types.name as GameName','game_accounts.name as name')
+        if(Auth::user()->role === 'Admin'){
+            $transaksi = DB::table('transaksi_histories')
+        ->select('*','game_accounts.name as name')
         ->join('transaksis','transaksi_histories.TransaksiID','=','transaksis.TransaksiID')
         ->join('game_accounts','transaksis.GameAccountID','=','game_accounts.GameAccountID')
-        ->join('game_types','game_accounts.GameAccountID','=','game_types.GameAccountID')
-        ->join('types','game_types.GameType','=','types.TypeID')
+        ->get();
+        }
+        else{
+            $transaksi = DB::table('transaksi_histories')
+        ->select('*','game_accounts.name as name')
+        ->join('transaksis','transaksi_histories.TransaksiID','=','transaksis.TransaksiID')
+        ->join('game_accounts','transaksis.GameAccountID','=','game_accounts.GameAccountID')
         ->where(['transaksi_histories.UserID' => $id])
         ->get();
-
+        }
         return view('transaksi_history', compact('transaksi'));
     }
 
@@ -81,14 +88,12 @@ class TransaksiController extends Controller
     public function showTransaction($id)
     {
         $tr = DB::table('transaksis')
-        ->select('*','types.name as GameName','game_accounts.name as name')
+        ->select('*','game_accounts.name as name','transaksis.UserID as PrevOwner','transaksi_histories.UserID as BuyerUserID',"game_accounts.UserID as AccountOwner")
         ->join('transaksi_histories','transaksis.TransaksiID','=','transaksi_histories.TransaksiID')
         ->join('game_accounts','transaksis.GameAccountID','=','game_accounts.GameAccountID')
-        ->join('game_types','game_accounts.GameAccountID','=','game_types.GameAccountID')
-        ->join('types','game_types.GameType','=','types.TypeID')
         ->where(['transaksis.TransaksiID' => $id])
         ->get();
-        // dd($tr);
+
         return view('view_transaksiHistory', compact('tr'));
     }
 
