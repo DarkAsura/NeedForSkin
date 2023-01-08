@@ -3,7 +3,7 @@
 @section('title', 'Register Page')
 
 @section('content')
-<div class="container" style="width:400px">
+<div class="container" style="width:500px; background-color: white; margin-top : 2rem">
   <form action="{{route('register')}}" method="post">
       @csrf
     <div class="mb-2">
@@ -36,7 +36,7 @@
       <p class="text-danger">{{$errors->first()}}</p>
         @endif
     </div>
-    <div class="mb-2">
+    <div class="mb-2" style="padding-right: 1rem">
       <button type="submit" class="btn btn-light w-100">Register</button>
     </div>
   </form>

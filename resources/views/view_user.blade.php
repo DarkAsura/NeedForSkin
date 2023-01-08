@@ -9,10 +9,11 @@
 
         <a href="{{ Route('Buat Game Account') }}" class="btn">Create Account</a>
 
-
-        <h1 class="h1 text-center">User ID :  {{ $user->id }} </h1>
-        <h1 class="h1 text-center">User Name : {{ $user->name }} </h1>
-        <h2 class="h2 text-center">User Email :  {{ $user->email }} </h2>
+        <div>
+            <h1 class="h1 text-center">User ID :  {{ $user->id }} </h1>
+            <h1 class="h1 text-center">User Name : {{ $user->name }} </h1>
+            <h1 class="h1 text-center">User Email :  {{ $user->email }} </h1>
+        </div>
 
         <div class="row row-cols-3 justify-content-md-center">
             @foreach($gameAccounts as $ga)

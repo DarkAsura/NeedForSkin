@@ -22,7 +22,7 @@ class GameAccountController extends Controller
         ->select('*','types.name as GameName','game_accounts.name as name')
         ->join('game_types','game_accounts.GameAccountID','=','game_types.GameAccountID')
         ->join('types','game_types.GameType','=','types.TypeID')
-        ->simplePaginate(12);
+        ->paginate(12);
 
 
         return view('home', compact('gameAccounts'));
@@ -182,7 +182,7 @@ class GameAccountController extends Controller
         ->join('types','game_types.GameType','=','types.TypeID')
         ->where('game_accounts.name', 'like', '%'.$search.'%')
         ->orwhere('describes', 'like', '%'.$search.'%')
-        ->simplePaginate(12);
+        ->paginate(12);
 
         return view('home', compact('gameAccounts', 'query'));
     }

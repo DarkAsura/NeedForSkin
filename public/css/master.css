@@ -1,4 +1,4 @@
-h1 { color: #333333; font-family: 'Bitter', serif; font-weight: normal; line-height: 54px; margin: 0 0 54px; }
+h1 { color: #F5F3F4; font-family: 'Bitter', serif; font-weight: normal; line-height: 54px; margin: 0 0 54px; }
 
 p { color: #333333; font-family: Georgia, serif; line-height: 28px; margin: 0 0 28px; }
 
@@ -29,9 +29,11 @@ body{
 }
 
 .card{
-    background-color: transparent;
+    /* background-color: transparent; */
     min-height: 50vh;
     max-width: 280cm;
+    margin: 1rem;
+    padding: 0;
 }
 
 .card-body{
@@ -72,4 +74,39 @@ body{
     height: 100%;
     border: 1px solid white;
     z-index: -1;
+}
+
+body{
+    background-color: #E5383B !important;
+    background-size: cover;
+}
+
+.page-item.active .page-link{
+    z-index: 3;
+    color: #fff !important  ;
+    background-color: #D3D3D3 !important;
+    border-color: #D3D3D3 !important;
+    border-radius: 50%;
+    padding: 6px 12px;
+}
+.page-link{
+    z-index: 3;
+    color: #A4161A !important;
+    background-color: #fff;
+    border-color: #A4161A;
+    border-radius: 50%;
+    padding: 6px 12px !important;
+}
+.page-item:first-child .page-link{
+    border-radius: 30% !important;
+}
+.page-item:last-child .page-link{
+    border-radius: 30% !important;
+}
+.pagination li{
+    padding: 3px;
+}
+.disabled .page-link{
+    color: #A4161A !important;
+    opacity: 0.5 !important;
 }

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-fluid">
-    <h2 class="card-title">{{$type->name}}</h2>
+    <h1 class="card-title">{{$type->name}}</h1>
         <div class="categoryDetail">
         <div class="container d-flex">
         @foreach($gameAccounts as $a)

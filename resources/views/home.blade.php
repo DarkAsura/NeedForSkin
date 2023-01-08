@@ -6,12 +6,12 @@
 
     <div class="container">
         @if(Auth::check() &&( Auth::user()->role === 'Member' || Auth::user()->role === 'Admin' ))
-        <h2 class="Welcome">Welcome, {{Auth::user()->name}}</h2>
+        <h1 class="Welcome" style="margin-top: 1rem">Welcome, {{Auth::user()->name}}</h2>
         @endif
         @if(isset($query))
-            <h1 class="text-center">Showing results of <b>"{{ $query }}"</b></h1>
+            <h1 class="text-center" style="margin-top: 1rem">Showing results of <b>"{{ $query }}"</b></h1>
         @else
-            <h1 class="text-center">Home Page</h1>
+            <h1 class="text-center" style="margin-top: 1rem">Home Page</h1>
         @endif
         <div class="row row-cols-3 justify-content-md-center transparant">
             @foreach($gameAccounts as $a)
@@ -54,7 +54,7 @@
         </div>
 
         <div class="d-flex justify-content-center" style="margin: 2rem">
-            {{$gameAccounts->links()}}
+            {{$gameAccounts->links('pagination') }}
         </div>
     </div>
 

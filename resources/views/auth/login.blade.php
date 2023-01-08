@@ -6,7 +6,7 @@
 
 <div class="login-reg-panel">
 
-  <div class="container" style="width:400px">
+  <div class="container" style="width:500px; background-color: white; margin-top : 2rem">
     <form action="{{route('login')}}" method="post">
         @csrf
       <div class="mb-2">
@@ -31,12 +31,12 @@
         <p class="text-danger">{{$errors->first()}}</p>
           @endif
       </div>
-      <div class="mb-2">
+      <div class="mb-2" style="padding-right: 1rem">
         <button type="submit" class="btn btn-light w-100">Login</button>
       </div>
     </form>
     <hr>
-    <p class="text-light">Don't Have an Account Yet ? Click <a class="link-light" href="{{route('register')}}">Here</a> to Register.</p>
+    <p class="text-dark">Don't Have an Account Yet ? Click <a class="link-white" href="{{route('register')}}">Here</a> to Register.</p>
   </div>
 
 </div>
