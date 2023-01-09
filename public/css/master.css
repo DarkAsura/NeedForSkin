@@ -20,14 +20,6 @@ width: max-content;
     padding-left: 7%;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Mukta');
-body{
-  font-family: 'Mukta', sans-serif;
-  height:100vh;
-  min-height:550px;
-  background-color: white !important;
-}
-
 .card{
     /* background-color: transparent; */
     min-height: 50vh;
@@ -71,7 +63,7 @@ body{
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     border: 1px solid white;
     z-index: -1;
 }

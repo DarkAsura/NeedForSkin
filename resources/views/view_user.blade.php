@@ -7,7 +7,7 @@
     <div class="container mt-5">
 
 
-        <a href="{{ Route('Buat Game Account') }}" class="btn">Create Account</a>
+        <a href="{{ Route('Buat Game Account') }}" class="btn">Sell Account</a>
 
         <div>
             <h1 class="h1 text-center">User ID :  {{ $user->id }} </h1>
